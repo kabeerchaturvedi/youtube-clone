@@ -1,10 +1,13 @@
 import "./App.css";
 import Body from "./components/Body";
 import Header from "./components/Header";
-import Sidebar from "./components/Sidebar";
 
 export default function App() {
-  {
+
+  return (
+    <div>
+      <Header />
+      {
     /* 
   
   Header
@@ -19,10 +22,6 @@ export default function App() {
   
   */
   }
-  return (
-    <div>
-      <Header />
-      <Sidebar />
       <Body />
     </div>
   );

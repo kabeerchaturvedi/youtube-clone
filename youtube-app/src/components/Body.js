@@ -4,9 +4,9 @@ import Sidebar from "./Sidebar";
 
 const Body = () => {
   return (
-    <div className="grid">
-      <Sidebar/>
-      <Maincontainer />
+    <div className="grid grid-flow-col">
+      <Sidebar />
+      <Maincontainer className="col-span-10"/>
     </div>
   );
 };

@@ -1,21 +1,26 @@
 import React from "react";
-import MenuItems from "./MenuItems";
 
 const Sidebar = () => {
   return (
-    <div className="p-5 shadow-lg col-span-1">
+    <div>
       <ul>
-        <li>Home</li>
-        <li>Shorts</li>
-        <li>Subscription</li>
+        <li>🏠 Home</li>
+        <li>▶️ Shorts</li>
+        <li>🔴 Live</li>
       </ul>
-      {/* <MenuItems /> */}
-      <h1>Subscription</h1>
+      <h1 className="font-bold pt-5">Subscription</h1>
       <ul>
-        <li>Music</li>
-        <li>Sports</li>
-        <li>Gaming</li>
-        <li>Movies</li>
+        <li>🎵 Music</li>
+        <li> ⚽ Sports</li>
+        <li>🎮Gaming</li>
+        <li>🎧 Movies</li>
+      </ul>
+      <h1 className="font-bold pt-5">Controls</h1>
+      <ul>
+        <li> ⚙️ Settings</li>
+        <li> 🎌 Report History</li>
+        <li>❓ Help </li>
+        <li>®️ Send Feedback</li>
       </ul>
     </div>
   );
