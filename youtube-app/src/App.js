@@ -1,14 +1,15 @@
 import "./App.css";
 import Body from "./components/Body";
 import Header from "./components/Header";
+import { Provider } from "react";
+import store from "../src/utils/store";
 
 export default function App() {
-
   return (
     <div>
-      <Header />
-      {
-    /* 
+      <Provider store={store}>
+        <Header />
+        {/* 
   
   Header
   Sidebar 
@@ -20,9 +21,9 @@ export default function App() {
       VideoCard 
   
   
-  */
-  }
-      <Body />
+  */}
+        <Body />
+      </Provider>
     </div>
   );
 }
