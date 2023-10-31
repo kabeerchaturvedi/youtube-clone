@@ -1,8 +1,9 @@
 import "./App.css";
 import Body from "./components/Body";
 import Header from "./components/Header";
-import { Provider } from "react";
+
 import store from "../src/utils/store";
+import { Provider } from "react-redux";
 
 export default function App() {
   return (
