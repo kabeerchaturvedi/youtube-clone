@@ -9,7 +9,7 @@ import store from "../src/utils/store";
 import WatchPage from "./components/WatchPage";
 
 export default function App() {
-  const appRouter = createBrowserRouter({
+  const appRouter = createBrowserRouter([{
     path: "/",
     element: <Body />,
     children: [
@@ -22,7 +22,7 @@ export default function App() {
         element: <WatchPage />,
       },
     ],
-  });
+  }]);
   return (
     <div>
       <Provider store={store}>
