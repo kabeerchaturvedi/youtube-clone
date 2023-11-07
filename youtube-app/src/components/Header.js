@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { useDispatch } from "react-redux";
 import { ToggleItem } from "../utils/appSlice";
 
 const Header = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  useEffect(
+    (e) => {
+      const results = fetch("YOUTUBE_SEARCH_API" + e);
+      console.log(results);
+    },
+    [searchQuery]
+  );
+
   const dispatch = useDispatch();
 
   const toggleMenuHandler = () => {
@@ -26,10 +36,13 @@ const Header = () => {
           src="https://cdn.mos.cms.futurecdn.net/8gzcr6RpGStvZFA2qRt4v6.jpg"
         />
       </div>
+      {/* Search Button */}
       <div className="flex items-center justify-center  col-span-10 px-10 ">
         <input
           type="text"
           className="w-1/2 border border-gray-400 p-2 rounded-l-full"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
         />
         <button className="border border-gray-400 p-2 rounded-r-full">
           Search
