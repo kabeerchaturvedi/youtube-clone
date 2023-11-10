@@ -5,34 +5,29 @@ import { YOUTUBE_SEARCH_API } from "../utils/constants";
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
-
-  useEffect(() => {
-    console.log(searchQuery);
-    getSearchSuggestions();
-    
-    // const debounce = function (fn, d) {
-    //   let timer;
-    //   return function () {
-    //     let context = this;
-    //     let args = arguments;
-    //     clearTimeout(timer);
-    //     timer = setTimeout(() => {
-    //       fn.setSearchQuery.apply(context, args);
-    //     }, 200);
-    //   };
-    // };
-  }, [searchQuery]);
-
-  const getSearchSuggestions = async () => {
-    const results = await fetch(YOUTUBE_SEARCH_API + searchQuery);
-    const json = await results.json();
-    console.log(json[1]);
-  };
+  const [suggestions, setSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(true);
 
   const dispatch = useDispatch();
 
   const toggleMenuHandler = () => {
     dispatch(ToggleItem());
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      getSearchSuggestions();
+    }, 200);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [searchQuery]);
+
+  const getSearchSuggestions = async () => {
+    const results = await fetch(YOUTUBE_SEARCH_API + searchQuery);
+    const json = await results.json();
+    setSuggestions(json[1]);
   };
 
   return (
@@ -62,7 +57,20 @@ const Header = () => {
         <button className="border border-gray-400 p-2 rounded-r-full">
           Search
         </button>
+
+        {showSuggestions && (
+          <div className="fixed bg-white py-2 px-2 w-[37rem] shadow-lg rounded-lg border border-gray-100">
+            <ul>
+              {suggestions.map((s) => (
+                <li key={s} className="py-2 px-3 shadow-lg hover:bg-gray-100">
+                  {s}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
+      {/* Bell Icon and User Login */}
       <div className="flex col-span-1">
         <img
           className="h-14"

@@ -9,6 +9,8 @@ import store from "../src/utils/store";
 import WatchPage from "./components/WatchPage";
 
 export default function App() {
+
+  
   const appRouter = createBrowserRouter([{
     path: "/",
     element: <Body />,
