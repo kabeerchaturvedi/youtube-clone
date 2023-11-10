@@ -1,18 +1,33 @@
 import React, { useEffect, useState } from "react";
-
 import { useDispatch } from "react-redux";
 import { ToggleItem } from "../utils/appSlice";
+import { YOUTUBE_SEARCH_API } from "../utils/constants";
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
-  useEffect(
-    (e) => {
-      const results = fetch("YOUTUBE_SEARCH_API" + e);
-      console.log(results);
-    },
-    [searchQuery]
-  );
+  useEffect(() => {
+    console.log(searchQuery);
+    getSearchSuggestions();
+    
+    // const debounce = function (fn, d) {
+    //   let timer;
+    //   return function () {
+    //     let context = this;
+    //     let args = arguments;
+    //     clearTimeout(timer);
+    //     timer = setTimeout(() => {
+    //       fn.setSearchQuery.apply(context, args);
+    //     }, 200);
+    //   };
+    // };
+  }, [searchQuery]);
+
+  const getSearchSuggestions = async () => {
+    const results = await fetch(YOUTUBE_SEARCH_API + searchQuery);
+    const json = await results.json();
+    console.log(json[1]);
+  };
 
   const dispatch = useDispatch();
 
